@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#Ignore this file it's just a dummy test file
 import simreader.core
 import simreader.constants
 import simreader.utils
@@ -15,9 +16,9 @@ reader.check_chv1()
 print(reader.chv1_tries_left)
 print(reader.chv2_tries_left)
 print(simreader.extras.get_serial_number(reader))
-print(simreader.extras.get_provider(reader))
-print(simreader.extras.get_msisdn(reader))
-
+#print(simreader.extras.get_provider(reader))
+#print(simreader.extras.get_msisdn(reader))
+print(simreader.extras.get_loci(reader, "0000"))
 #reader.check_chv1()
 #print(reader.chv1_tries_left)
 reader.close_session()

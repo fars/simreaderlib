@@ -23,6 +23,27 @@ def get_provider(reader):
         traceback.print_exc()
 
 
+def get_loci(reader, pin):
+    """
+    Returns location information from SIM card
+    (MCC(3digits)-MNC(3digits)-LAC(2bytes))
+    e.g. 231F02XXXX
+    231 = MCC (SR)
+    F02 = MNC (T-Mobile) Europe uses 2 digits (ignore F) USA 3
+    XXXX = LAC (Location Area Code) - LCID in G-MoN
+    :param reader: simreader.core.SIMReader object
+    :param pin: pin code
+    :return: Location information
+    """
+    reader.select_file(["3F00", simreader.constants.DF_GSM, simreader.constants.EF_LOCI])
+    reader.check_and_verify_chv1(pin, simreader.constants.CHV_READ)
+    data, sw = reader.send_apdu_match_sw("A0B000000B", simreader.constants.SW_OK)
+    print(data)
+    s = simreader.utils.swap_nibbles(simreader.utils.remove_padding(data))
+    s = s[8:18]
+    return s
+
+
 def get_serial_number(reader):
     """
     Returns SIM card serial number (last digit is not always printed on the card)

@@ -10,9 +10,11 @@ Under development
 Issues:
 
 - CHV1 inconsistency in usage
-- Some functions from extras.py work only with new 3G cards.
+- Some functions from extras.py work only with new cards, but not all.
 - Parts of code might be more ported from python2 better
 - No tests :(
+- No setup.py (because it's still buggy as hell)
+- I should probably start Wiki
 
 Copyright:
 
